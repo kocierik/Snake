@@ -50,14 +50,21 @@ class Snake {
     }
 
     lose() {
-
+        if (tail.length > 1) {
+            for (let i = 0; i < tail.length; i++) {
+                let pos = tail[i];
+                let d = dist(this.x, this.y, pos.x, pos.y);
+                if (d < 1) {
+                    noLoop()
+                }
+            }
+        }
     }
 
     update() {
         for (let i = 0; i < tail.length - 1; i++) {
             tail[i] = tail[i + 1];
         }
-
         tail[this.score] = createVector(this.x, this.y)
     }
 
